@@ -1,42 +1,30 @@
-var letter = require("./letter.js")
-var letterfunction = letter.letterfunction;
+var Letter = require("./letter.js");
 
-function Word (wordToGuess) {
-	this.letterArray = wordToGuess.split("").forEach(function(index) {
-		console.log("working");
-		console.log(index.value);
-		new letterfunction(index);
+function Word(randomWord) {
+	var randomWordArray = [];
+	var randomWordObjects = randomWord.split("").forEach(function(currentValue) {
+		var newLetter = new Letter(currentValue);
+		randomWordArray.push(newLetter);
 	})
-	// .forEach(function (index) {
-	// var letter = new letterfunction(index);	
-	// 	})
-	this.wordString = function() {
 
+	this.letterArray = randomWordArray;
+
+	this.returnString = function () {
+		var displayString = "";
+		for (i = 0; i < this.letterArray.length; i++) {
+			var displayResult = this.letterArray[i].display();
+			displayString = displayString + displayResult;
+		}
+		console.log(displayString);
+		return displayString;
+	}
+
+	this.guessLetter = function(character) {
+		for (i = 0; i < this.letterArray.length; i++) {
+			this.letterArray[i].guessLetter(character);
+		}
 	}
 }
 
-// var letter = require("./letter.js")
+module.exports = Word;
 
-// console.log(letter.letterfunction)
-
-// var letterfunction = letter.letterfunction;
-
-// var B = new letterfunction("B");
-// console.log(B)
-// B.display();
-
-// var letterArray = "thisword".split("");
-// console.log(letterArray)
-
-var heaven = new Word("heaven");
-
-console.log(heaven.letterArray);
-
-// this.letterArray = function() {
-// 		var letter = require("./letter.js")
-// 		var letterfunction = letter.letterfunction;
-// 		var letterArray = wordToGuess.split("");
-// 		for (i = 0; i < letterArray.length; i++) {
-// 			var letter = new letterfunction([i]);
-// 		}
-// 	}
