@@ -15,7 +15,7 @@ function Word(randomWord) {
 			var displayResult = this.letterArray[i].display();
 			displayString = displayString + displayResult;
 		}
-		console.log(displayString);
+		console.log(displayString + "\n");
 		return displayString;
 	}
 
